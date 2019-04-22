@@ -5,35 +5,46 @@ using UnityEngine.UI;
 
 public class PuzzleUI : MonoBehaviour
 {
+
     [SerializeField]
     private bool isGenerator;
     [SerializeField]
     private PuzzleManager manager;
 
+    [Space]
     [SerializeField]
     private Dropdown puzzleSelector;
 
+    [Space]
     [SerializeField]
     private RectTransform sudokuRect;
     [SerializeField]
     private Transform columnParent;
 
+    [Space]
+    [SerializeField]
+    private GameObject savePuzzleButton;
+    [SerializeField]
+    private GameObject solvePuzzleButton;
+
+    [Header("Cell text colors")]
+    [SerializeField]
+    private Color defaultCellColor;
+    [SerializeField]
+    private Color solvedCellColor;
+
+    [Space]
     [Header("Prefabs")]
     [SerializeField]
     private GameObject cellPrefab;
     [SerializeField]
     private GameObject columnPrefab;
 
-    [SerializeField]
-    private GameObject savePuzzleButton;
-    [SerializeField]
-    private GameObject solvePuzzleButton;
-
     private Cell[,] cells;
 
     private void Start()
     {
-        if(savePuzzleButton != null)
+        if(isGenerator)
         {
             savePuzzleButton.SetActive(false);
         }
@@ -47,13 +58,23 @@ public class PuzzleUI : MonoBehaviour
         InitializeGrid();
 
         puzzleSelector.onValueChanged.AddListener((value) => manager.DisplayPuzzle(value));
+
         if(!isGenerator)
         {
             puzzleSelector.onValueChanged.AddListener((value) => solvePuzzleButton.SetActive(value > 0));
         }
+        else
+        {
+            puzzleSelector.onValueChanged.AddListener((value) => savePuzzleButton.SetActive(false));
+        }
     }
 
-    #region ButtonActions
+    private void OnDestroy()
+    {
+        puzzleSelector.onValueChanged.RemoveAllListeners();
+    }
+
+    #region public ButtonActions
 
         public void SavePuzzleAction()
         {
@@ -66,6 +87,7 @@ public class PuzzleUI : MonoBehaviour
 
         public void GeneratePuzzleAction()
         {
+            puzzleSelector.value = 0;
             manager.GeneratePuzzle();
             savePuzzleButton.SetActive(true);
         }
@@ -115,7 +137,7 @@ public class PuzzleUI : MonoBehaviour
         {
             for (int j = 0; j < Constants.GRID_SIZE; j++)
             {
-                UpdateCell(i,j, grid[i,j], Color.black);
+                UpdateCell(i,j, grid[i,j], defaultCellColor);
             }
         }
     }
@@ -131,12 +153,17 @@ public class PuzzleUI : MonoBehaviour
         }
     }
 
-    internal void UpdateCell(int x, int y, int value, Color color)
+    internal void UpdateCell(int x, int y, int value)
+    {
+        cells[x,y].UpdateCellText(value, solvedCellColor);
+    }
+
+    private void UpdateCell(int x, int y, int value, Color color)
     {
         cells[x,y].UpdateCellText(value, color);
     }
 
-    internal void ClearCell(int x, int y)
+    private void ClearCell(int x, int y)
     {
         cells[x,y].UpdateCellText(0, Color.black);
     }

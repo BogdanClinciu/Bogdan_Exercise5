@@ -9,7 +9,6 @@ public class PuzzleManager : MonoBehaviour
     private PuzzleGenerator generator;
     [SerializeField]
     private PuzzleSolver solver;
-
     [SerializeField]
     private PuzzleUI puzzleUi;
 
@@ -34,7 +33,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     if(currentPuzzle[i,j] == 0)
                     {
-                        puzzleUi.UpdateCell(i,j, solvedPuzzle[i,j], Color.green);
+                        puzzleUi.UpdateCell(i,j, solvedPuzzle[i,j]);
                     }
                 }
             }

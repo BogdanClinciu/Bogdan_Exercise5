@@ -58,7 +58,7 @@ public class PuzzleBase : MonoBehaviour
             return 6;
         }
 
-        Debug.Log("Roun To Three Error");
+        Debug.Log("Round To Three Error  " + val);
         return -1;
     }
 }

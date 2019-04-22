@@ -19,7 +19,11 @@ public class PuzzleSolver : PuzzleBase
 
     private bool SolvePositions(int posIndex, List<Vector2Int> p, int[,] grid)
     {
-        if(posIndex == Constants.CELLS_TO_CLEAR + 1)
+        // if(posIndex == Constants.CELLS_TO_CLEAR + 1)
+        // {
+        //     return true;
+        // }
+        if(!EmptyCellsLeft(grid))
         {
             return true;
         }
@@ -34,6 +38,22 @@ public class PuzzleSolver : PuzzleBase
                     return true;
                 }
                 grid[p[posIndex].x, p[posIndex].y] = 0;
+            }
+        }
+
+        return false;
+    }
+
+    private bool EmptyCellsLeft(int[,] grid)
+    {
+        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        {
+            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            {
+                if(grid[i,j] == 0)
+                {
+                    return true;
+                }
             }
         }
 
