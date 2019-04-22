@@ -13,6 +13,8 @@
             UnityEngine.Debug.Log("Bad puzzle starting over");
         }
 
+        RemoveRandom(Constants.CELLS_TO_CLEAR, grid);
+
         return grid;
     }
 
@@ -53,5 +55,24 @@
         }
 
         return true;
+    }
+
+    private void RemoveRandom(int cellsToClear, int[,] grid)
+    {
+        int removed = 0;
+        int randX = 0;
+        int randY = 0;
+
+        while(removed <= cellsToClear)
+        {
+            randX = RandomInt();
+            randY = RandomInt();
+
+            if(grid[randX,randY] != 0)
+            {
+                grid[randX,randY] = 0;
+                removed ++;
+            }
+        }
     }
 }

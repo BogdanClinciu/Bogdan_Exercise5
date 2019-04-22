@@ -34,6 +34,11 @@ public class PuzzleBase : MonoBehaviour
         return true;
     }
 
+    protected int RandomInt()
+    {
+        return Random.Range(0, Constants.GRID_SIZE);
+    }
+
     private int RoundToThree(int val)
     {
         if(val < 3)

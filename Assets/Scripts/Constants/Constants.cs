@@ -8,6 +8,7 @@
     public const string PUZZLE_DATA_FILENAME = "/Puzzles.json";
     public const string PUZZLE_FILE_NOT_FOUND = "Unable to find puzzle data file. Writing blank puzzle data file.";
 
+    public const int CELLS_TO_CLEAR = 15;
     public const int GRID_SIZE = 9;
     public const int EMPTY_CELL = 0;
 
