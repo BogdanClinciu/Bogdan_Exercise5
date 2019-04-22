@@ -10,7 +10,6 @@
         {
             grid = new int[Constants.GRID_SIZE,Constants.GRID_SIZE];
             PlaceValues(0, grid);
-            UnityEngine.Debug.Log("Bad puzzle starting over");
         }
 
         RemoveRandom(Constants.CELLS_TO_CLEAR, grid);

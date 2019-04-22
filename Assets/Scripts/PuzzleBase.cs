@@ -4,6 +4,10 @@ public class PuzzleBase : MonoBehaviour
 {
     protected bool CheckPosition(int x, int y, int value, int[,] grid)
     {
+        if(value == 0)
+        {
+            return false;
+        }
         //check 3x3 cluster
         for (int i = RoundToThree(x); i < RoundToThree(x) + 3; i++)
         {

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PuzzleUI : MonoBehaviour
 {
     [SerializeField]
+    private bool isGenerator;
+    [SerializeField]
     private PuzzleManager manager;
 
     [SerializeField]
@@ -24,17 +26,31 @@ public class PuzzleUI : MonoBehaviour
 
     [SerializeField]
     private GameObject savePuzzleButton;
+    [SerializeField]
+    private GameObject solvePuzzleButton;
 
     private Cell[,] cells;
 
     private void Start()
     {
-        savePuzzleButton.SetActive(false);
+        if(savePuzzleButton != null)
+        {
+            savePuzzleButton.SetActive(false);
+        }
+        else
+        {
+            solvePuzzleButton.SetActive(false);
+        }
+
 
         SizeSudokuRect();
         InitializeGrid();
 
         puzzleSelector.onValueChanged.AddListener((value) => manager.DisplayPuzzle(value));
+        if(!isGenerator)
+        {
+            puzzleSelector.onValueChanged.AddListener((value) => solvePuzzleButton.SetActive(value > 0));
+        }
     }
 
     #region ButtonActions
@@ -54,12 +70,26 @@ public class PuzzleUI : MonoBehaviour
             savePuzzleButton.SetActive(true);
         }
 
+        public void SolvePuzzleButton()
+        {
+            manager.SolvePuzzle();
+            solvePuzzleButton.SetActive(false);
+        }
+
         public void ClearPuzzleAction()
         {
             ClearPuzzle();
             manager.ClearCurrentPuzzle();
-            savePuzzleButton.SetActive(false);
             puzzleSelector.value = 0;
+
+            if(isGenerator)
+            {
+                savePuzzleButton.SetActive(false);
+            }
+            else
+            {
+                solvePuzzleButton.SetActive(false);
+            }
         }
 
     #endregion

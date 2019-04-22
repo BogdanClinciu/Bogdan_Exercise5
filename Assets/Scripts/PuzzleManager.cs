@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
@@ -23,9 +22,23 @@ public class PuzzleManager : MonoBehaviour
         puzzleUi.UpdateDropDown(data);
     }
 
-    internal void SolvePuzzle(int puzzleIndex)
+    internal void SolvePuzzle()
     {
-        solver.SolvePuzzle(data[puzzleIndex].ToGrid());
+        if(currentPuzzle != null)
+        {
+            int[,] solvedPuzzle = solver.SolvePuzzle(currentPuzzle);
+
+            for (int i = 0; i < Constants.GRID_SIZE; i++)
+            {
+                for (int j = 0; j < Constants.GRID_SIZE; j++)
+                {
+                    if(currentPuzzle[i,j] == 0)
+                    {
+                        puzzleUi.UpdateCell(i,j, solvedPuzzle[i,j], Color.green);
+                    }
+                }
+            }
+        }
     }
 
     internal void GeneratePuzzle()
@@ -36,14 +49,14 @@ public class PuzzleManager : MonoBehaviour
 
     internal void DisplayPuzzle(int puzzleId)
     {
-        Debug.Log(puzzleId);
         if(puzzleId != 0)
         {
-            puzzleUi.DisplayPuzzle(data[puzzleId - 1].ToGrid());
+            currentPuzzle = data[puzzleId - 1].ToGrid();
+            puzzleUi.DisplayPuzzle(currentPuzzle);
         }
         else
         {
-            puzzleUi.ClearPuzzle();
+            puzzleUi.ClearPuzzleAction();
         }
     }
 
