@@ -44,6 +44,7 @@ public class PuzzleUI : MonoBehaviour
 
     private void Start()
     {
+        //disable the save/solve button initially
         if(isGenerator)
         {
             savePuzzleButton.SetActive(false);
@@ -53,12 +54,15 @@ public class PuzzleUI : MonoBehaviour
             solvePuzzleButton.SetActive(false);
         }
 
-
+        //square the parent rect of the sudoku grid
         SizeSudokuRect();
+        //Create text objects within the grid
         InitializeGrid();
 
+        //assign onValueChanged function to puzzle selector
         puzzleSelector.onValueChanged.AddListener((value) => manager.DisplayPuzzle(value));
 
+        //assign aditional use based functionality to the onValueChanged event of the puzzle selector
         if(!isGenerator)
         {
             puzzleSelector.onValueChanged.AddListener((value) => solvePuzzleButton.SetActive(value > 0));
@@ -116,6 +120,9 @@ public class PuzzleUI : MonoBehaviour
 
     #endregion
 
+    ///<summary>
+    ///Updates puzzle selector dropdown based on the given <paramref name="data"/> list.
+    ///</summary>
     internal void UpdateDropDown(List<PuzzleData> data)
     {
         puzzleSelector.ClearOptions();
@@ -131,6 +138,9 @@ public class PuzzleUI : MonoBehaviour
         puzzleSelector.options = options;
     }
 
+    ///<summary>
+    ///Updates each cell acording to the given sudoku <paramref name="grid"/>.
+    ///</summary>
     internal void DisplayPuzzle(int[,] grid)
     {
         for (int i = 0; i < Constants.GRID_SIZE; i++)
@@ -142,6 +152,9 @@ public class PuzzleUI : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///Clears each cell in the ui sudoku grid.
+    ///</summary>
     internal void ClearPuzzle()
     {
         for (int i = 0; i < Constants.GRID_SIZE; i++)
@@ -153,21 +166,33 @@ public class PuzzleUI : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///Updates a specific cell at the given <paramref name="x"/> and <paramref name="y"/> coordinates with the given <paramref name="value"/>. In this case the color is automatically assigned as this method's intended use is for updating cells that have been solved.
+    ///</summary>
     internal void UpdateCell(int x, int y, int value)
     {
         cells[x,y].UpdateCellText(value, solvedCellColor);
     }
 
+    ///<summary>
+    ///Updates a specific cell at the given <paramref name="x"/> and <paramref name="y"/> coordinates with the given <paramref name="value"/> and <paramref name="color"/>.
+    ///</summary>
     private void UpdateCell(int x, int y, int value, Color color)
     {
         cells[x,y].UpdateCellText(value, color);
     }
 
+    ///<summary>
+    ///Clears a specific cell at the given <paramref name="x"/> and <paramref name="y"/> coordinates.
+    ///</summary>
     private void ClearCell(int x, int y)
     {
         cells[x,y].UpdateCellText(0, Color.black);
     }
 
+    ///<summary>
+    ///Creates and refrences cell objects for later use, should only oocur once at start().
+    ///</summary>
     private void InitializeGrid()
     {
         cells = new Cell[Constants.GRID_SIZE,Constants.GRID_SIZE];
@@ -183,6 +208,9 @@ public class PuzzleUI : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///Resizes the sudoku grid parent rect such that its widht is equal to its height.
+    ///</summary>
     private void SizeSudokuRect()
     {
         sudokuRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sudokuRect.rect.height);

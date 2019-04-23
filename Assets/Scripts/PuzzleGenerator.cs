@@ -47,77 +47,11 @@ public class PuzzleGenerator : PuzzleBase
 
         List<Vector2Int> positions = GetPositionsToSolve(grid);
 
-        FillCells(0, positions, grid);
+        SolvePositions(0, positions, grid);
     }
 
     ///<summary>
-    ///Recursive method that loops and backtracks until a solution is found. The <paramref name="p"/> should be a list of vector2int containing all unfilled cells, and <paramref name="posIndex"/> should be 0 when first calling the method.
-    ///</summary>
-    private bool FillCells(int posIndex, List<Vector2Int> p, int[,] grid)
-    {
-        if(!EmptyCellsLeft(grid))
-        {
-            return true;
-        }
-
-        for (int n = 1; n <= 9; n++)
-        {
-            if(CheckPosition(p[posIndex].x, p[posIndex].y, n, grid))
-            {
-                grid[p[posIndex].x, p[posIndex].y] = n;
-                if(FillCells(posIndex + 1, p, grid))
-                {
-                    return true;
-                }
-                grid[p[posIndex].x, p[posIndex].y] = 0;
-            }
-        }
-
-        return false;
-    }
-
-    ///<summary>
-    ///Returns true if any unfilled cells are left in the given <paramref name="grid"/>.
-    ///</summary>
-    private bool EmptyCellsLeft(int[,] grid)
-    {
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
-        {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
-            {
-                if(grid[i,j] == 0)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    ///<summary>
-    ///Returns a list of all unfilled positions in the given <paramref name="grid"/>.
-    ///</summary>
-    private List<Vector2Int> GetPositionsToSolve(int[,] grid)
-    {
-        List<Vector2Int> positions = new List<Vector2Int>();
-
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
-        {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
-            {
-                if(grid[i,j] == 0)
-                {
-                    positions.Add(new Vector2Int(i, j));
-                }
-            }
-        }
-
-        return positions;
-    }
-
-    ///<summary>
-    ///Removes <paramref name="cellsToClear"/> ammount from the given <paramref name="grid"/>.
+    ///Clears cells until the given <paramref name="cellsToClear"/> ammount is left in the given <paramref name="grid"/>.
     ///</summary>
     private void RemoveRandom(int cellsToClear, int[,] grid)
     {
@@ -127,8 +61,8 @@ public class PuzzleGenerator : PuzzleBase
 
         while(cellsLeft > cellsToClear)
         {
-            randX = RandomInt();
-            randY = RandomInt();
+            randX = Random08;
+            randY = Random08;
 
             if(grid[randX,randY] != 0)
             {
