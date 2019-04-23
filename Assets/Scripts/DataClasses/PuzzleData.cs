@@ -38,7 +38,7 @@ public class PuzzleData
     }
 
     ///<summary>
-    ///Returns the grid as a 2d array.
+    ///Returns the sudoku grid as a 2d array.
     ///</summary>
     public int[,] ToGrid()
     {

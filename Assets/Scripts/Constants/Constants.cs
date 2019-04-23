@@ -16,14 +16,13 @@
     {
         get => Randomize(numberRange);
     }
-    public static int[] ORDERED_RANGE
-    {
-        get => numberRange;
-    }
-
 
     private static int[] numberRange = new int[] {1,2,3,4,5,6,7,8,9};
 
+
+    ///<summary>
+    ///Returns a randomized copy of the given <paramref name="nums"/> array.
+    ///</summary>
     private static int[] Randomize(int[] nums)
     {
         int[] randomized = new int[nums.Length];

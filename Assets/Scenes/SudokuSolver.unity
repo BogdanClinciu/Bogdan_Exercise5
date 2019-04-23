@@ -553,19 +553,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bfcc9c348d47241a170939096af0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCellColor: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
-  solvedCellColor: {r: 1, g: 0.9481527, b: 0.6084906, a: 1}
   isGenerator: 0
   manager: {fileID: 1506421362}
   puzzleSelector: {fileID: 2075286091}
   sudokuRect: {fileID: 411507759}
   columnParent: {fileID: 175295408}
+  savePuzzleButton: {fileID: 0}
+  solvePuzzleButton: {fileID: 2108080076}
+  defaultCellColor: {r: 1, g: 0.9481527, b: 0.6084906, a: 1}
+  solvedCellColor: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
   cellPrefab: {fileID: 7554889132285323538, guid: 716c35599a64e9f45a9c254790f0c59d,
     type: 3}
   columnPrefab: {fileID: 4269730290254328625, guid: 7fb4b7fff13da4f488d6ff7be540b09b,
     type: 3}
-  savePuzzleButton: {fileID: 0}
-  solvePuzzleButton: {fileID: 2108080076}
 --- !u!1 &411507758
 GameObject:
   m_ObjectHideFlags: 0
