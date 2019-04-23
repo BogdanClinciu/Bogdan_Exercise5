@@ -13,6 +13,7 @@ public class PuzzleManager : MonoBehaviour
     private PuzzleUI puzzleUi;
 
     private List<PuzzleData> data;
+    private PuzzleData selectedPuzzle;
     private int[,] currentPuzzle;
 
     private void Start()
@@ -62,11 +63,13 @@ public class PuzzleManager : MonoBehaviour
         if(puzzleId != 0)
         {
             currentPuzzle = data[puzzleId - 1].ToGrid();
+            selectedPuzzle = data[puzzleId - 1];
             puzzleUi.DisplayPuzzle(currentPuzzle);
         }
         else
         {
             currentPuzzle = null;
+            selectedPuzzle = null;
             puzzleUi.ClearPuzzleAction();
         }
     }
@@ -77,6 +80,7 @@ public class PuzzleManager : MonoBehaviour
     internal void ClearCurrentPuzzle()
     {
         currentPuzzle = null;
+        selectedPuzzle = null;
     }
 
     ///<summary>
@@ -90,6 +94,23 @@ public class PuzzleManager : MonoBehaviour
         }
 
         data.Add(new PuzzleData(currentPuzzle));
+        dataManager.SaveData(data);
+        currentPuzzle = null;
+        puzzleUi.UpdateDropDown(data);
+        return true;
+    }
+
+    ///<summary>
+    ///Removes the current puzzle from storage and updates ui.
+    ///</summary>
+    internal bool DeletePuzzle()
+    {
+        if(selectedPuzzle == null)
+        {
+            return false;
+        }
+
+        data.Remove(selectedPuzzle);
         dataManager.SaveData(data);
         currentPuzzle = null;
         puzzleUi.UpdateDropDown(data);
