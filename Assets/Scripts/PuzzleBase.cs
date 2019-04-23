@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PuzzleBase : MonoBehaviour
 {
+    ///<summary>
+    ///Returns a random value between 0 and the sudoku grid size (8), used for indexing.
+    ///</summary>
     protected int Random08
     {
         get => Random.Range(0, PuzzleUtils.Constants.GRID_SIZE);

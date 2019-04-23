@@ -1,6 +1,8 @@
 ﻿namespace PuzzleUtils
 {
-
+    ///<summary>
+    ///Contains constant values commonly used to generate sudoku puzzles.
+    ///</summary>
     internal class Constants
     {
         internal const string PUZZLE_LABEL = "Puzzle no. ";
@@ -17,6 +19,9 @@
 
     }
 
+    ///<summary>
+    ///Contains number utilities for generating sudoku puzzles (currently only contains method to return random valid cell number array).
+    ///</summary>
     internal class NumberUtils
     {
         internal static int[] RANDOMIZED_RANGE
