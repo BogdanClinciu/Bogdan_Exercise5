@@ -119,20 +119,6 @@ public class PuzzleBase : MonoBehaviour
     ///</summary>
     private int RoundToThree(int val)
     {
-        if(val < 3)
-        {
-            return 0;
-        }
-        if (val < 6)
-        {
-            return 3;
-        }
-        if(val < 9)
-        {
-            return 6;
-        }
-
-        Debug.Log("Round To Three Error  " + val);
-        return -1;
+        return Mathf.FloorToInt(val/3.0f) * 3;
     }
 }
