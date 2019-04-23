@@ -71,6 +71,7 @@ public class PuzzleUI : MonoBehaviour
         {
             puzzleSelector.onValueChanged.AddListener((value) => savePuzzleButton.SetActive(false));
         }
+
     }
 
     private void OnDestroy()

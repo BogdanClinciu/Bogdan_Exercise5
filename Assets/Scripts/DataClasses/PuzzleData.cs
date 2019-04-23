@@ -30,7 +30,7 @@ public class PuzzleData
         {
             for (int j = 0; j < Constants.GRID_SIZE; j++)
             {
-                data += grid[j,i] + (j < Constants.GRID_SIZE - 1 ? Constants.DATA_UNIT_SEPARATOR : Constants.DATA_ROW_SEPARATOR);
+                data += grid[i,j] + (j < Constants.GRID_SIZE - 1 ? Constants.DATA_UNIT_SEPARATOR : Constants.DATA_ROW_SEPARATOR);
             }
         }
 

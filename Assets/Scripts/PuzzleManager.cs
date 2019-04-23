@@ -95,5 +95,4 @@ public class PuzzleManager : MonoBehaviour
         puzzleUi.UpdateDropDown(data);
         return true;
     }
-
 }
