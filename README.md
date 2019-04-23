@@ -7,7 +7,7 @@ Sudoku Builder and Solver
 2. Create an application to solve the generated boards from the above mentioned application. The user should be able to select the desired board from a dropdown list and click on “Resolve”.
 
 # Quick setup:
-1. Download the BUILDS folder from the repository root.
+1. Download and unzip BUILDS.zip file from the repository root.
 2. Run Sudoku_Generator_Bogdan shortcut.
 3. Click "Generate" and then "Save" as many times as desired.
 4. Run Sudoku_Solver_Bogdan shortcut, select a puzzle from the Dropdown at the top right and click "Solve"
