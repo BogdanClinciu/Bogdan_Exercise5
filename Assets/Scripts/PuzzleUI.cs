@@ -129,11 +129,11 @@ public class PuzzleUI : MonoBehaviour
         puzzleSelector.ClearOptions();
 
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-        options.Add(new Dropdown.OptionData(Constants.PUZZLE_LABEL_NONE));
+        options.Add(new Dropdown.OptionData(PuzzleUtils.Constants.PUZZLE_LABEL_NONE));
 
         for (int i = 0; i < data.Count; i++)
         {
-            options.Add(new Dropdown.OptionData(Constants.PUZZLE_LABEL + i));
+            options.Add(new Dropdown.OptionData(PuzzleUtils.Constants.PUZZLE_LABEL + i));
         }
 
         puzzleSelector.options = options;
@@ -144,9 +144,9 @@ public class PuzzleUI : MonoBehaviour
     ///</summary>
     internal void DisplayPuzzle(int[,] grid)
     {
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
             {
                 UpdateCell(i,j, grid[i,j], defaultCellColor);
             }
@@ -158,9 +158,9 @@ public class PuzzleUI : MonoBehaviour
     ///</summary>
     internal void ClearPuzzle()
     {
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
             {
                 ClearCell(i,j);
             }
@@ -196,12 +196,12 @@ public class PuzzleUI : MonoBehaviour
     ///</summary>
     private void InitializeGrid()
     {
-        cells = new Cell[Constants.GRID_SIZE,Constants.GRID_SIZE];
+        cells = new Cell[PuzzleUtils.Constants.GRID_SIZE,PuzzleUtils.Constants.GRID_SIZE];
 
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
             Transform col = Instantiate(columnPrefab, columnParent).transform;
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
             {
                 cells[i,j] = Instantiate(cellPrefab, col).GetComponent<Cell>();
                 cells[i,j].UpdateCellText(0, Color.black);

@@ -13,7 +13,7 @@ public class PuzzleDataManager : MonoBehaviour
 
         try
         {
-            System.IO.File.WriteAllText (Application.persistentDataPath + Constants.PUZZLE_DATA_FILENAME, contents);
+            System.IO.File.WriteAllText (Application.persistentDataPath + PuzzleUtils.Constants.PUZZLE_DATA_FILENAME, contents);
         }
         catch (System.Exception e)
         {
@@ -28,11 +28,11 @@ public class PuzzleDataManager : MonoBehaviour
     {
         List<PuzzleData> loadedData = new List<PuzzleData>();
 
-        if (System.IO.File.Exists(Application.persistentDataPath + Constants.PUZZLE_DATA_FILENAME))
+        if (System.IO.File.Exists(Application.persistentDataPath + PuzzleUtils.Constants.PUZZLE_DATA_FILENAME))
         {
             try
             {
-				loadedData = JsonUtility.FromJson<PuzzleDataContainer>(System.IO.File.ReadAllText(Application.persistentDataPath + Constants.PUZZLE_DATA_FILENAME)).dataList;
+				loadedData = JsonUtility.FromJson<PuzzleDataContainer>(System.IO.File.ReadAllText(Application.persistentDataPath + PuzzleUtils.Constants.PUZZLE_DATA_FILENAME)).dataList;
 			}
             catch (System.Exception ex)
             {
@@ -43,7 +43,7 @@ public class PuzzleDataManager : MonoBehaviour
         {
             try
             {
-                Debug.Log(Constants.PUZZLE_FILE_NOT_FOUND);
+                Debug.Log(PuzzleUtils.Constants.PUZZLE_FILE_NOT_FOUND);
                 SaveData(new List<PuzzleData>());
             }
             catch (System.Exception ex)

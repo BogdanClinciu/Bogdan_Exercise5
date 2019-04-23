@@ -11,7 +11,7 @@ public class Cell : MonoBehaviour
     ///</summary>
     internal void UpdateCellText(int value, Color color)
     {
-        if(value == Constants.EMPTY_CELL)
+        if(value == PuzzleUtils.Constants.EMPTY_CELL)
         {
             cellText.enabled = false;
         }

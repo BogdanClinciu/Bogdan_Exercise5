@@ -5,7 +5,7 @@ public class PuzzleBase : MonoBehaviour
 {
     protected int Random08
     {
-        get => Random.Range(0, Constants.GRID_SIZE);
+        get => Random.Range(0, PuzzleUtils.Constants.GRID_SIZE);
     }
 
 
@@ -31,7 +31,7 @@ public class PuzzleBase : MonoBehaviour
         }
 
         //check column and row
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
             //check column
             if(grid[x,i] == value)
@@ -79,9 +79,9 @@ public class PuzzleBase : MonoBehaviour
     ///</summary>
     protected bool EmptyCellsLeft(int[,] grid)
     {
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
             {
                 if(grid[i,j] == 0)
                 {
@@ -100,9 +100,9 @@ public class PuzzleBase : MonoBehaviour
     {
         List<Vector2Int> positions = new List<Vector2Int>();
 
-        for (int i = 0; i < Constants.GRID_SIZE; i++)
+        for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
         {
-            for (int j = 0; j < Constants.GRID_SIZE; j++)
+            for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
             {
                 if(grid[i,j] == 0)
                 {

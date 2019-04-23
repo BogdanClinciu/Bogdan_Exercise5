@@ -9,7 +9,7 @@ public class PuzzleSolver : PuzzleBase
     ///</summary>
     internal int[,] SolvePuzzle(int[,] grid)
     {
-        int[,] solved = new int[Constants.GRID_SIZE,Constants.GRID_SIZE];
+        int[,] solved = new int[PuzzleUtils.Constants.GRID_SIZE,PuzzleUtils.Constants.GRID_SIZE];
 
         System.Array.Copy(grid, solved, grid.Length);
 

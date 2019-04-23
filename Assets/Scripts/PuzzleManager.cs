@@ -32,9 +32,9 @@ public class PuzzleManager : MonoBehaviour
         {
             int[,] solvedPuzzle = solver.SolvePuzzle(currentPuzzle);
 
-            for (int i = 0; i < Constants.GRID_SIZE; i++)
+            for (int i = 0; i < PuzzleUtils.Constants.GRID_SIZE; i++)
             {
-                for (int j = 0; j < Constants.GRID_SIZE; j++)
+                for (int j = 0; j < PuzzleUtils.Constants.GRID_SIZE; j++)
                 {
                     if(currentPuzzle[i,j] == 0)
                     {

@@ -10,9 +10,9 @@ public class PuzzleGenerator : PuzzleBase
     internal int[,] GeneratePuzzle()
     {
 
-        int[,] grid = new int[Constants.GRID_SIZE,Constants.GRID_SIZE];
-        int[] randomUL = Constants.RANDOMIZED_RANGE;
-        int[] randomDR = Constants.RANDOMIZED_RANGE;
+        int[,] grid = new int[PuzzleUtils.Constants.GRID_SIZE,PuzzleUtils.Constants.GRID_SIZE];
+        int[] randomUL = PuzzleUtils.NumberUtils.RANDOMIZED_RANGE;
+        int[] randomDR = PuzzleUtils.NumberUtils.RANDOMIZED_RANGE;
 
         //randomize the upper left
         for (int i = 0; i < 3; i++)
@@ -34,7 +34,7 @@ public class PuzzleGenerator : PuzzleBase
 
         //complete the puzzle
         CompletePuzzle(grid);
-        RemoveRandom(Constants.CELLS_TO_CLEAR, grid);
+        RemoveRandom(PuzzleUtils.Constants.CELLS_TO_CLEAR, grid);
         return grid;
     }
 
@@ -55,7 +55,7 @@ public class PuzzleGenerator : PuzzleBase
     ///</summary>
     private void RemoveRandom(int cellsToClear, int[,] grid)
     {
-        int cellsLeft = Constants.GRID_SIZE * Constants.GRID_SIZE;
+        int cellsLeft = PuzzleUtils.Constants.GRID_SIZE * PuzzleUtils.Constants.GRID_SIZE;
         int randX = 0;
         int randY = 0;
 
